@@ -2,9 +2,9 @@
 
 **Conversor de arquivos DBC do DATASUS para CSV.**
 
-Uma ferramenta simples e portátil desenvolvida em Python para facilitar a conversão de arquivos `.DBC` utilizados nas bases de dados do DATASUS para o formato `.CSV`.
+O DBC Converter é uma ferramenta desenvolvida em Python para facilitar a conversão de arquivos `.DBC`, utilizados nas bases de dados do DATASUS, para o formato `.CSV`.
 
-O objetivo é tornar esse processo mais rápido e acessível, permitindo converter múltiplos arquivos simultaneamente, sem a necessidade de utilizar ferramentas complexas ou realizar procedimentos manuais.
+A proposta é simplificar esse processo por meio de uma solução leve, automatizada e de fácil utilização, permitindo converter múltiplos arquivos simultaneamente.
 
 ## Funcionalidades
 
@@ -14,27 +14,14 @@ O objetivo é tornar esse processo mais rápido e acessível, permitindo convert
 - Preservação dos nomes originais dos arquivos.
 - Exportação compatível com Microsoft Excel.
 - Tratamento individual de erros, sem interromper todo o processamento.
-- Execução portátil no Windows, sem necessidade de instalar Python (versão executável).
+- Criação automática das pastas de entrada e saída.
 
-## Como utilizar
-
-### Opção 1 — Executável Windows
-
-1. Acesse a seção [Releases](../../releases) deste repositório.
-2. Baixe o arquivo `converter.exe`.
-3. Coloque o executável em uma pasta de sua preferência.
-4. Crie uma pasta chamada `entrada`.
-5. Insira os arquivos `.DBC` que deseja converter.
-6. Execute `converter.exe`.
-
-Os arquivos convertidos serão disponibilizados automaticamente na pasta `saida`.
-
-### Estrutura de diretórios
+## Estrutura do projeto
 
 ```text
-DBC-Converter/
+conversordbcDataSus/
 │
-├── converter.exe
+├── converter.py
 │
 ├── entrada/
 │   ├── ERPE2601.dbc
@@ -47,11 +34,17 @@ DBC-Converter/
     └── ERPE2603.csv
 ```
 
-As pastas `entrada` e `saida` são criadas automaticamente caso não existam.
+As pastas `entrada` e `saida` são criadas automaticamente pelo programa caso não existam.
 
-### Opção 2 — Executar pelo Python
+## Requisitos
 
-Para executar o projeto pelo código-fonte, é necessário ter Python instalado.
+- Python 3.9 ou superior.
+- Bibliotecas:
+  - pyreaddbc
+  - dbfread
+  - pandas
+
+## Instalação
 
 Clone o repositório:
 
@@ -59,29 +52,37 @@ Clone o repositório:
 git clone https://github.com/AlanSPa/conversordbcDataSus.git
 ```
 
-Entre na pasta:
+Acesse a pasta do projeto:
 
 ```bash
 cd conversordbcDataSus
 ```
 
-Instale as dependências:
+Instale todas as dependências necessárias utilizando o arquivo `requirements.txt`:
 
 ```bash
-pip install pyreaddbc dbfread pandas
+pip install -r requirements.txt
 ```
 
-Execute:
+**Nota:** O arquivo `requirements.txt` contém a lista de bibliotecas necessárias para executar o projeto. Não é necessário instalar cada dependência individualmente.
+
+## Como utilizar
+
+1. Coloque os arquivos `.DBC` na pasta `entrada`.
+2. Execute o script:
 
 ```bash
 python converter.py
 ```
 
-Coloque os arquivos DBC na pasta `entrada` antes de iniciar a conversão.
+3. Aguarde o processamento.
+4. Acesse a pasta `saida` para encontrar os arquivos CSV convertidos.
+
+Não é necessário informar os nomes dos arquivos ou alterar o código. Todos os arquivos DBC encontrados na pasta de entrada serão processados automaticamente.
 
 ## Formato de exportação
 
-Os arquivos são exportados com as seguintes configurações:
+Os arquivos CSV são gerados com as seguintes configurações:
 
 | Propriedade | Configuração |
 |---|---|
@@ -91,7 +92,7 @@ Os arquivos são exportados com as seguintes configurações:
 | Índice | Não exportado |
 | Nome do arquivo | Preservado |
 
-O formato UTF-8 com BOM facilita a abertura dos arquivos no Microsoft Excel.
+A codificação UTF-8 com BOM facilita a abertura dos arquivos no Microsoft Excel.
 
 ## Tecnologias utilizadas
 
@@ -99,10 +100,9 @@ O formato UTF-8 com BOM facilita a abertura dos arquivos no Microsoft Excel.
 - [Pandas](https://pandas.pydata.org/)
 - [pyreaddbc](https://github.com/AlertaDengue/pyreaddbc)
 - [dbfread](https://github.com/olemb/dbfread)
-- [PyInstaller](https://pyinstaller.org/)
 
 ## Objetivo do projeto
 
-O DBC Converter nasceu da necessidade de simplificar a conversão de arquivos utilizados nas bases públicas de dados do DATASUS.
+O DBC Converter surgiu da necessidade de simplificar a conversão de arquivos utilizados nas bases públicas de dados do DATASUS.
 
-A proposta é oferecer uma alternativa leve, prática e acessível para profissionais, pesquisadores e estudantes que trabalham com dados de saúde pública.
+A ferramenta busca oferecer uma alternativa simples e automatizada para profissionais, pesquisadores e estudantes que trabalham com dados de saúde pública.
